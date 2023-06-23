@@ -1,7 +1,10 @@
-const { Router } = require('express');
-const router = Router();
+const { Router } = require('express')
+const router = Router()
+const animal = require('../controllers/animal')
+const raza = require('../controllers/raza')
+const tipo_animal = require('../controllers/tipo-animal')
+const evento = require('../controllers/evento')
 
-const { getAnimales, getAnimalById, getRazas, getRazaById, getEventos, getAnimalImage, getTipoAnimal, getTipoAnimalById } = require('../controllers/index.controller');
 
 /**
  * @swagger
@@ -16,7 +19,7 @@ const { getAnimales, getAnimalById, getRazas, getRazaById, getEventos, getAnimal
  *      default:
  *        description: Error inesperado
  */
-router.get('/animales', getAnimales);
+router.get('/animales', animal.getAnimales)
 
 /**
  * @swagger
@@ -40,31 +43,7 @@ router.get('/animales', getAnimales);
  *      default:
  *        description: Error inesperado
  */
-router.get('/animales/:id', getAnimalById);
-
-/**
- * @swagger
- * /animales/{id}/imagen:
- *  get:
- *    description: Usar para obtener la imagen de un animal en particular
- *    tags:
- *      - Animal
- *    parameters:
- *      - in: path
- *        name: id
- *        description: id numerica del animal
- *        required: true
- *        schema:
- *          type: integer
- *    responses:
- *      '200':
- *        description: Respuesta exitosa
- *      '400':
- *        description: La id especificada es invalida (no es un número)
- *      default:
- *        description: Error inesperado
- */
-router.get('/animales/:id/imagen', getAnimalImage);
+router.get('/animales/:id', animal.getAnimalById)
 
 /**
  * @swagger
@@ -79,7 +58,7 @@ router.get('/animales/:id/imagen', getAnimalImage);
  *      default:
  *        description: Error inesperado
  */
-router.get('/razas', getRazas);
+router.get('/razas', raza.getRazas)
 
 /**
  * @swagger
@@ -103,7 +82,7 @@ router.get('/razas', getRazas);
  *      default:
  *        description: Error inesperado
  */
-router.get('/razas/:id', getRazaById);
+router.get('/razas/:id', raza.getRazaById)
 
 /**
  * @swagger
@@ -118,7 +97,7 @@ router.get('/razas/:id', getRazaById);
  *      default:
  *        description: Error inesperado
  */
-router.get('/eventos', getEventos);
+router.get('/eventos', evento.getEventos)
 
 /**
  * @swagger
@@ -133,7 +112,7 @@ router.get('/eventos', getEventos);
  *      default:
  *        description: Error inesperado
  */
-router.get('/tipos_animales', getTipoAnimal);
+router.get('/tipos_animales', tipo_animal.getTipoAnimal)
 
 /**
  * @swagger
@@ -157,7 +136,7 @@ router.get('/tipos_animales', getTipoAnimal);
  *      default:
  *        description: Error inesperado
  */
-router.get('/tipos_animales/:id', getTipoAnimalById);
+router.get('/tipos_animales/:id', tipo_animal.getTipoAnimalById)
 
 
-module.exports = router;
+module.exports = router
